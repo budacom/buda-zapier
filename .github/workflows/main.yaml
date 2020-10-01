@@ -1,6 +1,9 @@
 name: Buda Zapier
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -10,12 +13,34 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Use Node.js 10.x
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
-        node-version: 10.x
+        node-version: 10
 
-    - run: npm install
+    - run: npm ci
     - run: npm test
       env:
         CI: true
+
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10
+
+    - run: sudo apt-get install jq
+    - run: npm install -g zapier-platform-cli
+    - run: npm ci
+    - run: npm run prepare
+      env:
+        ENV: production
+    - run: zapier push
+      env:
+        ZAPIER_DEPLOY_KEY: ${{ secrets.ZAPIER_DEPLOY_KEY }}
+
