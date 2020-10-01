@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --testTimeout 10000"
+    "test": "jest --testTimeout 10000",
+    "prepare-staging": "jq -r '.zapier.staging.app' package.json > .zapierapprc",
+    "prepare-production": "jq -r '.zapier.production.app' package.json > .zapierapprc"
   },
   "dependencies": {
     "zapier-platform-core": "10.1.1"
@@ -14,5 +16,19 @@
     "nock": "^13.0.4",
     "mockdate": "^3.0.2"
   },
-  "private": true
+  "private": true,
+  "zapier": {
+    "production": {
+      "app": {
+        "id": 118025,
+        "key": "App118025"
+      }
+    },
+    "staging": {
+      "app": {
+        "id": 118105,
+        "key": "App118105"
+      }
+    }
+  }
 }

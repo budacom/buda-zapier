@@ -19,3 +19,16 @@ jobs:
     - run: npm test
       env:
         CI: true
+
+  deploy:
+
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+
+    - run: npm run prepare-staging
+    - run: cat .zapierapprc
