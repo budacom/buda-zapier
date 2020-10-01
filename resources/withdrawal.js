@@ -9,7 +9,8 @@ const performSearch = async (z, bundle) => {
     url: `https://stg.buda.com/api/v2/currencies/${bundle.inputData.currency}/withdrawals`,
     params: params,
   });
-  return response.data
+
+  return response.data.withdrawals;
 };
 
 // creates a new withdrawal
@@ -21,7 +22,8 @@ const performCreate = async (z, bundle) => {
       // todo
     }
   });
-  return response.data
+
+  return response.data.withdrawal;
 };
 
 module.exports = {
