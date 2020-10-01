@@ -7,9 +7,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      node-version: 10.x
-
     steps:
     - uses: actions/checkout@v2
 
@@ -18,7 +15,6 @@ jobs:
       with:
         node-version: 10.x
 
-    - run: npm install -g zapier-platform-cli
     - run: npm install
     - run: npm test
       env:
