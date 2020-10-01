@@ -6,7 +6,7 @@ const performSearch = async (z, bundle) => {
   if (bundle.inputData.state) params.state = bundle.inputData.state;
 
   const response = await z.request({
-    url: `https://stg.buda.com/api/v2/currencies/${bundle.inputData.currency}/withdrawals`,
+    url: `${process.env.API_BASE_URL}/currencies/${bundle.inputData.currency}/withdrawals`,
     params: params,
   });
 
@@ -17,7 +17,7 @@ const performSearch = async (z, bundle) => {
 const performCreate = async (z, bundle) => {
   const response = await z.request({
     method: 'POST',
-    url: `https://stg.buda.com/api/v2/currencies/${bundle.inputData.currency}/withdrawals`,
+    url: `${process.env.API_BASE_URL}/currencies/${bundle.inputData.currency}/withdrawals`,
     body: {
       // todo
     }
