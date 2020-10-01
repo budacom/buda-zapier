@@ -18,7 +18,9 @@
     "mockdate": "^3.0.2"
   },
   "jest": {
-    "setupFiles": ["./test/jest.setup.js"]
+    "setupFiles": [
+      "./test/jest.setup.js"
+    ]
   },
   "private": true,
   "zapier": {
