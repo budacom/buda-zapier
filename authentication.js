@@ -33,6 +33,8 @@ const buildMessageToSign = (request, nonce) => {
     const stringifiedParams = querystring.stringify(request.params);
 
     if (stringifiedParams) request.url += `${splitter}${stringifiedParams}`;
+
+    request.params = {};
   }
 
   const url = request.url.replace(/^.*\/\/[^\/]+(:\d+)?/i, '');
