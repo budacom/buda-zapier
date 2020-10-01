@@ -2,11 +2,12 @@ const sample = require('../samples/sample_withdrawal');
 
 // get a list of withdrawals
 const performSearch = async (z, bundle) => {
+  const params = {};
+  if (bundle.inputData.state) params.state = bundle.inputData.state;
+
   const response = await z.request({
     url: `https://stg.buda.com/api/v2/currencies/${bundle.inputData.currency}/withdrawals`,
-    params: {
-      state: bundle.inputData.state,
-    }
+    params: params,
   });
   return response.data
 };
