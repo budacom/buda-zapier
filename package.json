@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --testTimeout 10000",
-    "prepare": "jq -r \".zapier.${ENV}.app\" package.json > .zapierapprc"
+    "predeploy": "jq -r \".zapier.${ENV}.app\" package.json > .zapierapprc",
+    "deploy": "zapier push"
   },
   "dependencies": {
     "zapier-platform-core": "10.1.1"
