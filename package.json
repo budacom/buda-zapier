@@ -17,6 +17,9 @@
     "nock": "^13.0.4",
     "mockdate": "^3.0.2"
   },
+  "jest": {
+    "setupFiles": ["./test/jest.setup.js"]
+  },
   "private": true,
   "zapier": {
     "production": {

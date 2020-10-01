@@ -17,7 +17,7 @@ describe('custom auth', () => {
 
     MockDate.set(1434319925275);
 
-    nock('https://stg.buda.com/api/v2', {
+    nock('https://test.buda.com/api/v2', {
       reqheaders: {
         'X-SBTC-APIKEY': 'foo',
         'X-SBTC-NONCE': 1434319925275,
@@ -41,7 +41,7 @@ d9269cb7eaf8270d68c06dc406',
       },
     };
 
-    nock('https://stg.buda.com/api/v2').get('/me').reply(401);
+    nock('https://test.buda.com/api/v2').get('/me').reply(401);
 
     try {
       await appTester(App.authentication.test, bundle);
