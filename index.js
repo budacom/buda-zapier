@@ -6,7 +6,7 @@ const {
 
 const withdrawalResource = require("./resources/withdrawal");
 
-const getDeposit = require("./triggers/deposit");
+const depositResource = require("./resources/deposit");
 
 module.exports = {
   // This is just shorthand to reference the installed dependencies you have.
@@ -21,9 +21,7 @@ module.exports = {
   afterResponse: [...afters],
 
   // If you want your trigger to show up, you better include it here!
-  triggers: {
-    [getDeposit.key]: getDeposit
-  },
+  triggers: {},
 
   // If you want your searches to show up, you better include it here!
   searches: {},
@@ -33,6 +31,6 @@ module.exports = {
 
   resources: {
     [withdrawalResource.key]: withdrawalResource,
-    [withdrawalResource.key]: withdrawalResource
+    [depositResource.key]: depositResource
   },
 };

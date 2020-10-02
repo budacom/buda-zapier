@@ -9,10 +9,10 @@ const appTester = zapier.createAppTester(App);
 zapier.tools.env.inject();
 
 describe('My App', () => {
-  it('should run triggers.deposit', async () => {
+  it('should run resources.deposit', async () => {
     const bundle = { inputData: {} };
 
-    const results = await appTester(App.triggers.deposit.operation.perform, bundle);
+    const results = await appTester(App.resources.deposit.list.operation.perform, bundle);
     should.exist(results);
   });
 });
