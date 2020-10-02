@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --testTimeout 10000",
-    "predeploy": "jq -r \".zapier.${ENV}.app\" package.json > .zapierapprc",
-    "postdeploy": "zapier env:set $(jq -r '.version' package.json) $(jq -r '.zapier.production.env | to_entries | map([.key,.value|tostring] | join(\"=\")) | join(\" \")' package.json)",
     "deploy": "zapier push"
   },
   "dependencies": {
@@ -22,25 +20,5 @@
       "./test/jest.setup.js"
     ]
   },
-  "private": true,
-  "zapier": {
-    "production": {
-      "app": {
-        "id": 118025,
-        "key": "App118025"
-      },
-      "env": {
-        "API_BASE_URL": "https://stg.buda.com/api/v2"
-      }
-    },
-    "staging": {
-      "app": {
-        "id": 118105,
-        "key": "App118105"
-      },
-      "env": {
-        "API_BASE_URL": "https://stg.buda.com/api/v2"
-      }
-    }
-  }
+  "private": true
 }
