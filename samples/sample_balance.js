@@ -1,4 +1,4 @@
-module.exports = [{
+module.exports = {
   "id": "BTC",
   "amount": [
     "0.002",
@@ -17,4 +17,4 @@ module.exports = [{
     "BTC"
   ],
   "account_id": 1365
-}]
+}
