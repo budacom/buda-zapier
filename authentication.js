@@ -44,7 +44,7 @@ const buildMessageToSign = (request, nonce) => {
     request.headers['Content-Type'] = 'application/json; charset=utf-8';
 
     let base64EncodedBody = Buffer.from(request.body).toString('base64');
-    return `${request.method} ${url} ${base64_encoded_body} ${nonce}`;
+    return `${request.method} ${url} ${base64EncodedBody} ${nonce}`;
   } else {
     return `${request.method} ${url} ${nonce}`;
   }
