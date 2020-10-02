@@ -8,6 +8,8 @@ const withdrawalResource = require("./resources/withdrawal");
 
 const depositResource = require("./resources/deposit");
 
+const balanceResource = require("./resources/balance");
+
 module.exports = {
   // This is just shorthand to reference the installed dependencies you have.
   // Zapier will need to know these before we can upload.
@@ -31,6 +33,7 @@ module.exports = {
 
   resources: {
     [withdrawalResource.key]: withdrawalResource,
-    [depositResource.key]: depositResource
+    [depositResource.key]: depositResource,
+    [balanceResource.key]: balanceResource
   },
 };
