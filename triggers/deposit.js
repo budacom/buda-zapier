@@ -4,9 +4,10 @@ const sample = require('../samples/sample_deposit');
 const perform = async (z, bundle) => {
   const params = {};
   if (bundle.inputData.state) params.state = bundle.inputData.state;
+  if (bundle.inputData.currency) params.currency = bundle.inputData.currency;
 
   const response = await z.request({
-    url: `${process.env.API_BASE_URL}/currencies/${bundle.inputData.currency}/deposits`,
+    url: `${process.env.API_BASE_URL}/deposits`,
     params: params,
   });
 
@@ -30,7 +31,7 @@ module.exports = {
     // `inputFields` defines the fields a user could provide
     // Zapier will pass them in as `bundle.inputData` later. They're optional.
     inputFields: [
-      { key: 'currency', required: true },
+      { key: 'currency', required: false },
       { key: 'state', required: false },
     ],
 

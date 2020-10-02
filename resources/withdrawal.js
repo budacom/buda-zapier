@@ -4,9 +4,10 @@ const sample = require('../samples/sample_withdrawal');
 const performSearch = async (z, bundle) => {
   const params = {};
   if (bundle.inputData.state) params.state = bundle.inputData.state;
+  if (bundle.inputData.currency) params.currency = bundle.inputData.currency;
 
   const response = await z.request({
-    url: `${process.env.API_BASE_URL}/currencies/${bundle.inputData.currency}/withdrawals`,
+    url: `${process.env.API_BASE_URL}/withdrawals`,
     params: params,
   });
 
@@ -55,7 +56,7 @@ module.exports = {
     operation: {
       perform: performSearch,
       inputFields: [
-        { key: 'currency', required: true },
+        { key: 'currency', required: false },
         { key: 'state', required: false },
       ]
     }
@@ -68,7 +69,7 @@ module.exports = {
     },
     operation: {
       inputFields: [
-        { key: 'currency', required: true },
+        { key: 'currency', required: false },
         { key: 'state', required: false },
       ],
       perform: performSearch
