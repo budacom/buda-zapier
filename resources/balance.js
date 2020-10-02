@@ -10,7 +10,7 @@ const performSearch = async (z, bundle) => {
     params: params
   });
 
-  return response.data.balances.find(balance => balance.id === currency);
+  return [response.data.balances.find(balance => balance.id === currency)];
 };
 
 module.exports = {
