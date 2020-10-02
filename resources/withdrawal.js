@@ -1,8 +1,5 @@
+const inputs = require('../lib/inputs')
 const sample = require('../samples/sample_withdrawal');
-
-const isCrypto = (currency) => {
-  return currency === 'BTC' || currency === 'ETH' || currency === 'LTC';
-};
 
 // get a list of withdrawals
 const performSearch = async (z, bundle) => {
@@ -27,7 +24,7 @@ const performCreate = async (z, bundle) => {
 
   if (isCrypto(bundle.inputData.currency)) {
     payload.withdrawalData.targetAddress = bundle.inputData.address;
-  } 
+  }
 
   const response = await z.request({
     method: 'POST',
@@ -94,11 +91,11 @@ module.exports = {
     },
     operation: {
       inputFields: [
-        { key: 'currency', required: true, choices: ['BTC', 'ETH', 'LTC', 'CLP'] },
+        { key: 'currency', required: true, choices: inputs.currency.choices},
         { key: 'amount', required: true },
         { key: 'address', required: true },
         function (z, bundle) {
-          return isCrypto(bundle.inputData.currency) ? [{ key: 'address', required: true }] : [];
+          return inputs.currency.isCrypto(bundle.inputData.currency) ? [{ key: 'address', required: true }] : [];
         },
       ],
       perform: performCreate
