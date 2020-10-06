@@ -4,13 +4,16 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
   release:
     types:
       - published
 
 jobs:
   tests:
-
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -26,8 +29,7 @@ jobs:
         CI: true
 
   build_deploy:
-    needs: tests
-
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
 
     steps:
