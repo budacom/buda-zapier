@@ -1,4 +1,4 @@
-const inputs = require('../lib/inputs');
+const currencies = require('../lib/currencies');
 const sample = require('../samples/sample_balance');
 
 // find a particular balance by name (or other search criteria)
@@ -54,7 +54,7 @@ module.exports = {
     },
     operation: {
       inputFields: [
-        { key: 'currency', required: true, choices: inputs.currency.choices },
+        { key: 'currency', required: true, choices: currencies.allChoices() },
       ],
       perform: performSearch
     },
