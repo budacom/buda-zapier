@@ -1,6 +1,17 @@
 const inputs = require('../lib/inputs')
 const sample = require('../samples/sample_withdrawal');
 
+const transform = (withdrawal) => {
+  return {
+    id: withdrawal.id,
+    state: withdrawal.state,
+    amount: withdrawal.amount && withdrawal.amount[0],
+    fee: withdrawal.fee && withdrawal.fee[0],
+    currency: withdrawal.currency,
+    withdrawalData: withdrawal.withdrawal_data,
+  }
+}
+
 // get a list of withdrawals
 const performSearch = async (z, bundle) => {
   const params = {};
@@ -12,27 +23,34 @@ const performSearch = async (z, bundle) => {
     params: params,
   });
 
-  return response.data.withdrawals;
+  return response.data.withdrawals.map((w) => transform(w));
 };
 
 // creates a new withdrawal
 const performCreate = async (z, bundle) => {
   let payload = {
     amount: bundle.inputData.amount,
-    withdrawalData: {},
+    withdrawal_data: {},
   };
 
-  if (isCrypto(bundle.inputData.currency)) {
-    payload.withdrawalData.targetAddress = bundle.inputData.address;
+  if (inputs.currency.isCrypto(bundle.inputData.currency)) {
+    payload.withdrawal_data.target_address = bundle.inputData.address;
   }
 
-  const response = await z.request({
+  let response = await z.request({
     method: 'POST',
     url: `${process.env.API_BASE_URL}/currencies/${bundle.inputData.currency}/withdrawals`,
     body: payload,
   });
 
-  return response.data.withdrawal;
+  while (response.data.withdrawal.state == 'pending_preparation') {
+    response = await z.request({
+      method: 'GET',
+      url: `${process.env.API_BASE_URL}/withdrawals/${response.data.withdrawal.id}`,
+    });
+  }
+
+  return transform(response.data.withdrawal);
 };
 
 module.exports = {
@@ -95,7 +113,11 @@ module.exports = {
         { key: 'amount', required: true },
         { key: 'address', required: true },
         function (z, bundle) {
-          return inputs.currency.isCrypto(bundle.inputData.currency) ? [{ key: 'address', required: true }] : [];
+          if(inputs.currency.isCrypto(bundle.inputData.currency)) {
+            return [{ key: 'address', required: true }];
+          }
+
+          return [];
         },
       ],
       perform: performCreate
