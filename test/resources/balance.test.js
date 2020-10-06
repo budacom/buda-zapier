@@ -39,9 +39,9 @@ describe('Balance', () => {
         [{
           currency: 'BTC',
           amount: 1.0,
-          available_amount: 0.5,
-          frozen_amount: 0.3,
-          pending_withdraw_amount: 0.2,
+          availableAmount: 0.5,
+          frozenAmount: 0.3,
+          pendingWithdrawAmount: 0.2,
         }]
       );
     });

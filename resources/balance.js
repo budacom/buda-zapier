@@ -5,9 +5,9 @@ const transform = (balance) => {
   return {
     currency: balance.id,
     amount: balance.amount[0],
-    available_amount: balance.available_amount[0],
-    frozen_amount: balance.frozen_amount[0],
-    pending_withdraw_amount: balance.pending_withdraw_amount[0]
+    availableAmount: balance.available_amount[0],
+    frozenAmount: balance.frozen_amount[0],
+    pendingWithdrawAmount: balance.pending_withdraw_amount[0]
   }
 }
 
