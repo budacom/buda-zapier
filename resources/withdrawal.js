@@ -109,7 +109,12 @@ module.exports = {
     },
     operation: {
       inputFields: [
-        { key: 'currency', required: true, choices: currencies.choicesForWithdrawal() },
+        {
+          key: 'currency',
+          required: true,
+          choices: currencies.choicesForWithdrawal(),
+          altersDynamicFields: true,
+        },
         { key: 'amount', required: true, type: 'number' },
         { key: 'address', required: true },
         function (z, bundle) {
