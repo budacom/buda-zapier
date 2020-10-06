@@ -10,15 +10,8 @@ describe('Balance', () => {
   describe('search', () => {
     beforeEach(() => {
       nock('https://test.buda.com/api/v2')
-        .get('/balances')
-        .reply(200, { balances: [{
-            id: 'BCH',
-            account_id: 13,
-            amount: [1.0, 'BCH'],
-            available_amount: [0.5, 'BCH'],
-            frozen_amount: [0.3, 'BCH'],
-            pending_withdraw_amount: [0.2, 'BCH'],
-          },
+        .get('/balances/BTC')
+        .reply(200, { balance:
           {
             id: 'BTC',
             account_id: 13,
@@ -26,7 +19,8 @@ describe('Balance', () => {
             available_amount: [0.5, 'BTC'],
             frozen_amount: [0.3, 'BTC'],
             pending_withdraw_amount: [0.2, 'BTC'],
-          }] });
+          }
+        });
     });
 
     it('fetches balances from the /balances endpoint and transforms them', async () => {
