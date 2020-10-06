@@ -1,6 +1,17 @@
 const currencies = require('../lib/currencies');
 const sample = require('../samples/sample_deposit');
 
+const transform = (deposit) => {
+  return {
+    id: deposit.id,
+    state: deposit.state,
+    currency: deposit.currency,
+    amount: deposit.amount && deposit.amount[0],
+    fee: deposit.fee && deposit.fee[0],
+    depositData: deposit.deposit_data,
+  }
+}
+
 // get a list of deposits
 const performList = async (z, bundle) => {
   const params = {};
@@ -12,7 +23,7 @@ const performList = async (z, bundle) => {
     params: params,
   });
 
-  return response.data.deposits;
+  return response.data.deposits.map((w) => transform(w));
 };
 
 module.exports = {
