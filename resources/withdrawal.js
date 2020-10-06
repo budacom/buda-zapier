@@ -13,9 +13,10 @@ const transform = (withdrawal) => {
 }
 
 const withdrawalStateChoices = [
-  { name: 'prepared', label: 'Withdrawal prepared' },
+  { name: 'pending_op_execution', label: 'Withdrawal pending' },
   { name: 'confirmed', label: 'Withdrawal confirmed' },
   { name: 'rejected', label: 'Withdrawal rejected' },
+  { name: 'executing', label: 'Withdrawal rejected' },
 ]
 
 // get a list of withdrawals

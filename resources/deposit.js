@@ -68,6 +68,7 @@ module.exports = {
           required: false,
           helpText: 'Specify the state of the deposit to watch.',
           choices: [
+            { name: 'pending_confirmation', label: 'Deposit pending' },
             { name: 'confirmed', label: 'Deposit confirmed' },
             { name: 'rejected', label: 'Deposit rejected' },
             { name: 'retained', label: 'Deposit reained' },
