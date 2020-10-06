@@ -58,12 +58,18 @@ module.exports = {
 
   search: {
     display: {
-      label: 'Find Balance',
-      description: 'Finds a balance give.'
+      label: 'Get Balance',
+      description: 'Get the balance for a given currency.'
     },
     operation: {
       inputFields: [
-        { key: 'currency', required: true, choices: currencies.allChoices() },
+        {
+          key: 'currency',
+          required: true,
+          label: 'Currency',
+          helpText: 'Specify the currency to find the balance for.',
+          choices: currencies.allChoices()
+        },
       ],
       perform: performSearch
     },

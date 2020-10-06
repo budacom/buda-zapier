@@ -34,7 +34,11 @@ module.exports = {
     operation: {
       perform: searchLastTrade,
       inputFields: [
-        { key: 'market', required: true, choices: markets.allChoices() },
+        {
+          key: 'market',
+          required: true,
+          choices: markets.allChoices(),
+          helpText: 'Specify the market where to watch for trades.' },
       ],
     },
   },

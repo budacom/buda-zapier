@@ -75,22 +75,28 @@ module.exports = {
 
   create: {
     display: {
-      label: 'Create Lightning Invoice',
-      description: 'Creates a new lightning invoice.'
+      label: 'Create Lightning Network Invoice',
+      description: 'Creates a new lightning network invoice.'
     },
     operation: {
       inputFields: [
         {
           key: 'amount_satoshis',
+          helpText: 'Speficy the amount of satoshis used to create the invoice.',
           type: 'integer',
-          required: true },
-        { key: 'memo', required: false },
+          required: true
+        },
+        {
+          key: 'memo',
+          helpText: 'A message to bundle with the invoice.',
+          required: false
+        },
         {
           key: 'expiry_seconds',
           required: true,
           type: 'integer',
           default: '3600',
-          helpText: 'La cantidad de tiempo en segundos en la que el invoice expirará',
+          helpText: 'Specify the time in which the invoice will expire in seconds. Set 0 for no expiration.',
         },
       ],
       perform: performCreate
