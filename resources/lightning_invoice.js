@@ -15,7 +15,6 @@ const performCreate = async (z, bundle) => {
     body: payload,
   });
 
-  z.console.log(response.data)
   return response.data.invoice;
 };
 
