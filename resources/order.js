@@ -55,7 +55,7 @@ module.exports = {
           key: 'type',
           required: true,
           choices: { 'Bid': 'Buy', 'Ask': 'Sell' },
-          helpText: 'Specify the type of order.'
+          helpText: 'Specify the type of order. Are you buying or selling.'
         },
         {
           key: 'amount',
@@ -70,7 +70,7 @@ module.exports = {
   sample: sample,
 
   outputFields: [
-    { key: 'id', label: 'ID' },
+    { key: 'id', label: 'ID', type: 'integer' },
     { key: 'market', label: 'Market' },
   ]
 };

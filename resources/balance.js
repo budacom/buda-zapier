@@ -48,7 +48,6 @@ module.exports = {
   sample: sample,
 
   outputFields: [
-    { key: 'id', label: 'ID' },
     { key: 'currency', label: 'Currency' },
   ]
 };

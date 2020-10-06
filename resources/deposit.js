@@ -63,7 +63,7 @@ module.exports = {
   sample: sample,
 
   outputFields: [
-    { key: 'id', label: 'ID' },
+    { key: 'id', label: 'ID', type: 'integer' },
     { key: 'currency', label: 'Currency' },
   ]
 };
