@@ -1,4 +1,4 @@
-const inputs = require('../lib/inputs')
+const currencies = require('../lib/currencies')
 const sample = require('../samples/sample_withdrawal');
 
 const transform = (withdrawal) => {
@@ -33,7 +33,7 @@ const performCreate = async (z, bundle) => {
     withdrawal_data: {},
   };
 
-  if (inputs.currency.isCrypto(bundle.inputData.currency)) {
+  if (currencies.isCrypto(bundle.inputData.currency)) {
     payload.withdrawal_data.target_address = bundle.inputData.address;
   }
 
@@ -82,7 +82,7 @@ module.exports = {
     operation: {
       perform: performSearch,
       inputFields: [
-        { key: 'currency', required: false },
+        { key: 'currency', required: false, choices: currencies.allChoices() },
         { key: 'state', required: false },
       ]
     }
@@ -95,7 +95,7 @@ module.exports = {
     },
     operation: {
       inputFields: [
-        { key: 'currency', required: false },
+        { key: 'currency', required: false, choices: currencies.allChoices() },
         { key: 'state', required: false },
       ],
       perform: performSearch
@@ -109,11 +109,11 @@ module.exports = {
     },
     operation: {
       inputFields: [
-        { key: 'currency', required: true, choices: inputs.currency.choices},
-        { key: 'amount', required: true },
+        { key: 'currency', required: true, choices: currencies.choicesForWithdrawal() },
+        { key: 'amount', required: true, type: 'number' },
         { key: 'address', required: true },
         function (z, bundle) {
-          if(inputs.currency.isCrypto(bundle.inputData.currency)) {
+          if(currencies.isCrypto(bundle.inputData.currency)) {
             return [{ key: 'address', required: true }];
           }
 

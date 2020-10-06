@@ -1,4 +1,4 @@
-const inputs = require('../lib/inputs');
+const currencies = require('../lib/currencies');
 const sample = require('../samples/sample_deposit');
 
 // get a list of deposits
@@ -46,7 +46,7 @@ module.exports = {
       // `inputFields` defines the fields a user could provide
       // Zapier will pass them in as `bundle.inputData` later. They're optional on triggers, but required on searches and creates.
       inputFields: [
-        { key: 'currency', required: false, choices: inputs.currency.choices },
+        { key: 'currency', required: false, choices: currencies.allChoices() },
         { key: 'state', required: false },
       ],
     }
