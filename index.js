@@ -10,6 +10,8 @@ const depositResource = require("./resources/deposit");
 
 const balanceResource = require("./resources/balance");
 
+const lightningInvoiceResource = require("./resources/lightning_invoice");
+
 module.exports = {
   // This is just shorthand to reference the installed dependencies you have.
   // Zapier will need to know these before we can upload.
@@ -34,6 +36,7 @@ module.exports = {
   resources: {
     [withdrawalResource.key]: withdrawalResource,
     [depositResource.key]: depositResource,
-    [balanceResource.key]: balanceResource
+    [balanceResource.key]: balanceResource,
+    [lightningInvoiceResource.key]: lightningInvoiceResource
   },
 };
