@@ -1,5 +1,13 @@
 const sample = require('../samples/sample_lightning_network_invoice');
 
+const transform = (invoice) => {
+  return {
+    id: invoice.id,
+    currency: invoice.currency,
+    encodedPaymentRequest: invoice.encoded_payment_request,
+  }
+}
+
 // creates a new lightning_invoice
 const performCreate = async (z, bundle) => {
   let payload = {
