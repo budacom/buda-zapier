@@ -1,6 +1,16 @@
 const inputs = require('../lib/inputs');
 const sample = require('../samples/sample_balance');
 
+const transform = (balance) => {
+  return {
+    currency: balance.id,
+    amount: balance.amount[0],
+    available_amount: balance.available_amount[0],
+    frozen_amount: balance.frozen_amount[0],
+    pending_withdraw_amount: balance.pending_withdraw_amount[0]
+  }
+}
+
 // find a particular balance by name (or other search criteria)
 const performSearch = async (z, bundle) => {
   const currency = bundle.inputData.currency;
@@ -10,7 +20,8 @@ const performSearch = async (z, bundle) => {
     params: params
   });
 
-  return [response.data.balances.find(balance => balance.id === currency)];
+  let balance = response.data.balances.find(b => b.id === currency)
+  return [transform(balance)];
 };
 
 module.exports = {
