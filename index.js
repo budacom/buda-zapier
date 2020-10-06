@@ -4,13 +4,12 @@ const {
   afters = [],
 } = require('./authentication');
 
-const withdrawalResource = require("./resources/withdrawal");
-
-const depositResource = require("./resources/deposit");
-
 const balanceResource = require("./resources/balance");
-
+const depositResource = require("./resources/deposit");
 const lightningInvoiceResource = require("./resources/lightning_invoice");
+const orderResource = require("./resources/order");
+const priceResource = require("./resources/price");
+const withdrawalResource = require("./resources/withdrawal");
 
 module.exports = {
   // This is just shorthand to reference the installed dependencies you have.
@@ -34,9 +33,11 @@ module.exports = {
   creates: {},
 
   resources: {
-    [withdrawalResource.key]: withdrawalResource,
-    [depositResource.key]: depositResource,
     [balanceResource.key]: balanceResource,
-    [lightningInvoiceResource.key]: lightningInvoiceResource
+    [depositResource.key]: depositResource,
+    [lightningInvoiceResource.key]: lightningInvoiceResource,
+    [orderResource.key]: orderResource,
+    [priceResource.key]: priceResource,
+    [withdrawalResource.key]: withdrawalResource,
   },
 };
