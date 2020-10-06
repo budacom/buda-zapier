@@ -61,25 +61,8 @@ const performCreate = async (z, bundle) => {
 };
 
 module.exports = {
-  // see here for a full list of available properties:
-  // https://github.com/zapier/zapier-platform/blob/master/packages/schema/docs/build/schema.md#resourceschema
   key: 'withdrawal',
   noun: 'Withdrawal',
-
-  // If `get` is defined, it will be called after a `search` or `create`
-  // useful if your `searches` and `creates` return sparse objects
-  // get: {
-  //   display: {
-  //     label: 'Get Withdrawal',
-  //     description: 'Gets a withdrawal.'
-  //   },
-  //   operation: {
-  //     inputFields: [
-  //       {key: 'id', required: true}
-  //     ],
-  //     perform: defineMe
-  //   }
-  // },
 
   list: {
     display: {
@@ -87,7 +70,6 @@ module.exports = {
       description: 'Triggers when a new withdrawal is created.'
     },
     operation: {
-      perform: performSearch,
       inputFields: [
         {
           key: 'currency',
@@ -101,32 +83,10 @@ module.exports = {
           helpText: 'Specify the state of the withdrawal to watch.',
           choices: withdrawalStateChoices
         },
-      ]
+      ],
+      perform: performSearch,
     }
   },
-
-  // search: {
-  //   display: {
-  //     label: 'Find Withdrawal',
-  //     description: 'Finds a withdrawal give.'
-  //   },
-  //   operation: {
-  //     inputFields: [
-  //       {
-  //         key: 'currency',
-  //         required: false,
-  //         choices: currencies.allChoices(),
-  //         helpText: 'Specify the currency to watch new withdrawals.'
-  //       },
-  //       {
-  //         key: 'state',
-  //         required: false,
-  //         choices: withdrawalStateChoices
-  //       },
-  //     ],
-  //     perform: performSearch
-  //   },
-  // },
 
   create: {
     display: {
@@ -164,17 +124,8 @@ module.exports = {
     },
   },
 
-  // In cases where Zapier needs to show an example record to the user, but we are unable to get a live example
-  // from the API, Zapier will fallback to this hard-coded sample. It should reflect the data structure of
-  // returned records, and have obvious placeholder values that we can show to any user.
-  // In this resource, the sample is reused across all methods
   sample: sample,
 
-  // If fields are custom to each user (like spreadsheet columns), `outputFields` can create human labels
-  // For a more complete example of using dynamic fields see
-  // https://github.com/zapier/zapier-platform/tree/master/packages/cli#customdynamic-fields
-  // Alternatively, a static field definition can be provided, to specify labels for the fields
-  // In this resource, these output fields are reused across all resources
   outputFields: [
     { key: 'id', label: 'ID' },
     { key: 'currency', label: 'Currency' },
