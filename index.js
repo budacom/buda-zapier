@@ -7,6 +7,7 @@ const {
 const balanceResource = require("./resources/balance");
 const depositResource = require("./resources/deposit");
 const lightningInvoiceResource = require("./resources/lightning_invoice");
+const orderResource = require("./resources/order");
 const priceResource = require("./resources/price");
 const withdrawalResource = require("./resources/withdrawal");
 
@@ -35,6 +36,7 @@ module.exports = {
     [balanceResource.key]: balanceResource,
     [depositResource.key]: depositResource,
     [lightningInvoiceResource.key]: lightningInvoiceResource,
+    [orderResource.key]: orderResource,
     [priceResource.key]: priceResource,
     [withdrawalResource.key]: withdrawalResource,
   },
