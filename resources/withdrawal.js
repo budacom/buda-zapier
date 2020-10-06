@@ -13,10 +13,10 @@ const transform = (withdrawal) => {
 }
 
 const withdrawalStateChoices = [
-  { name: 'pending_op_execution', label: 'Withdrawal pending' },
-  { name: 'confirmed', label: 'Withdrawal confirmed' },
-  { name: 'rejected', label: 'Withdrawal rejected' },
-  { name: 'executing', label: 'Withdrawal rejected' },
+  { label: 'Withdrawal pending', value: 'pending_op_execution', sample: 'pending_op_execution'  },
+  { label: 'Withdrawal confirmed', value: 'confirmed', sample: 'confirmed'  },
+  { label: 'Withdrawal rejected', value: 'rejected', sample: 'rejected'  },
+  { label: 'Withdrawal rejected', value: 'executing', sample: 'executing'  },
 ]
 
 // get a list of withdrawals
