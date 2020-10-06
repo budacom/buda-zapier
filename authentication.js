@@ -40,9 +40,6 @@ const buildMessageToSign = (request, nonce) => {
   const url = request.url.replace(/^.*\/\/[^\/]+(:\d+)?/i, '');
 
   if (request.body) {
-    request.body = JSON.stringify(request.body);
-    request.headers['Content-Type'] = 'application/json; charset=utf-8';
-
     let base64EncodedBody = Buffer.from(request.body).toString('base64');
     return `${request.method} ${url} ${base64EncodedBody} ${nonce}`;
   } else {
@@ -53,10 +50,12 @@ const buildMessageToSign = (request, nonce) => {
 // This function runs before every outbound request. You can have as many as you
 // need. They'll need to each be registered in your index.js file.
 const includeApiKey = (request, z, bundle) => {
+  if (!bundle.authData.apiKey) return request;
+
   const nonce = new Date().getTime();
   const msg = buildMessageToSign(request, nonce);
   const sign = crypto.createHmac('sha384', bundle.authData.apiSecret).update(msg).digest('hex');
-      
+
   request.headers['X-SBTC-APIKEY'] = bundle.authData.apiKey;
   request.headers['X-SBTC-NONCE'] = nonce;
   request.headers['X-SBTC-SIGNATURE'] = sign;
