@@ -105,28 +105,28 @@ module.exports = {
     }
   },
 
-  search: {
-    display: {
-      label: 'Find Withdrawal',
-      description: 'Finds a withdrawal give.'
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'currency',
-          required: false,
-          choices: currencies.allChoices(),
-          helpText: 'Specify the currency to watch new withdrawals.'
-        },
-        {
-          key: 'state',
-          required: false,
-          choices: withdrawalStateChoices
-        },
-      ],
-      perform: performSearch
-    },
-  },
+  // search: {
+  //   display: {
+  //     label: 'Find Withdrawal',
+  //     description: 'Finds a withdrawal give.'
+  //   },
+  //   operation: {
+  //     inputFields: [
+  //       {
+  //         key: 'currency',
+  //         required: false,
+  //         choices: currencies.allChoices(),
+  //         helpText: 'Specify the currency to watch new withdrawals.'
+  //       },
+  //       {
+  //         key: 'state',
+  //         required: false,
+  //         choices: withdrawalStateChoices
+  //       },
+  //     ],
+  //     perform: performSearch
+  //   },
+  // },
 
   create: {
     display: {
