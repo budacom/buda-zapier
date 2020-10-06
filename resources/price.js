@@ -46,7 +46,7 @@ module.exports = {
   sample: sample,
 
   outputFields: [
-    { key: 'id', label: 'Trade ID' },
+    { key: 'id', label: 'Trade ID', type: 'integer' },
     { key: 'price', label: 'Price' },
     { key: 'timestamp', label: 'Time' },
     { key: 'trigger', label: 'Triggering Order' },
