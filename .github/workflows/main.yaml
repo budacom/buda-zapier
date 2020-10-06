@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  release:
+    types:
+      - published
 
 jobs:
   tests:
@@ -36,7 +39,16 @@ jobs:
 
     - run: npm install -g zapier-platform-cli
     - run: npm ci
-    - run: zapier push
+    - name: Deploy Staging
+      run: zapier push
+      if: ${{ github.event_name == 'push' }}
       env:
+        ZAPIER_DEPLOY_KEY: ${{ secrets.ZAPIER_DEPLOY_KEY }}
+
+    - name: Deploy Production
+      run: zapier push
+      if: ${{ github.event_name == 'release' }}
+      env:
+        ZAPIER_CURRENT_APP_FILE: .zapierapprc-prod
         ZAPIER_DEPLOY_KEY: ${{ secrets.ZAPIER_DEPLOY_KEY }}
 
