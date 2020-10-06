@@ -13,15 +13,13 @@ const transform = (balance) => {
 
 // find a particular balance by name (or other search criteria)
 const performSearch = async (z, bundle) => {
-  const currency = bundle.inputData.currency;
   const params = {};
   const response = await z.request({
-    url: `${process.env.API_BASE_URL}/balances`,
+    url: `${process.env.API_BASE_URL}/balances/${bundle.inputData.currency}`,
     params: params
   });
 
-  let balance = response.data.balances.find(b => b.id === currency)
-  return [transform(balance)];
+  return [transform(response.data.balance)];
 };
 
 module.exports = {
