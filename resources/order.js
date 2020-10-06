@@ -55,7 +55,7 @@ module.exports = {
           key: 'type',
           required: true,
           choices: { 'Bid': 'Buy', 'Ask': 'Sell' },
-          helpText: 'Specify the type of order.'
+          helpText: 'Specify the type of order. Are you buying or selling.'
         },
         {
           key: 'amount',
