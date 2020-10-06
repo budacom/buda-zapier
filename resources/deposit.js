@@ -57,8 +57,23 @@ module.exports = {
       // `inputFields` defines the fields a user could provide
       // Zapier will pass them in as `bundle.inputData` later. They're optional on triggers, but required on searches and creates.
       inputFields: [
-        { key: 'currency', required: false, choices: currencies.allChoices() },
-        { key: 'state', required: false },
+        {
+          key: 'currency',
+          required: false,
+          choices: currencies.allChoices(),
+          helpText: 'Specify the currency to watch new deposits.'
+        },
+        {
+          key: 'state',
+          required: false,
+          helpText: 'Specify the state of the deposit to watch.',
+          choices: [
+            { name: 'confirmed', label: 'Deposit confirmed' },
+            { name: 'rejected', label: 'Deposit rejected' },
+            { name: 'retained', label: 'Deposit reained' },
+            { name: 'anulled', label: 'Deposit anulled' },
+          ]
+        },
       ],
     }
   },

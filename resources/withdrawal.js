@@ -12,6 +12,12 @@ const transform = (withdrawal) => {
   }
 }
 
+const withdrawalStateChoices = [
+  { name: 'prepared', label: 'Withdrawal prepared' },
+  { name: 'confirmed', label: 'Withdrawal confirmed' },
+  { name: 'rejected', label: 'Withdrawal rejected' },
+]
+
 // get a list of withdrawals
 const performSearch = async (z, bundle) => {
   const params = {};
@@ -77,13 +83,23 @@ module.exports = {
   list: {
     display: {
       label: 'New Withdrawal',
-      description: 'Lists the withdrawals.'
+      description: 'Triggers when a new withdrawal is created.'
     },
     operation: {
       perform: performSearch,
       inputFields: [
-        { key: 'currency', required: false, choices: currencies.allChoices() },
-        { key: 'state', required: false },
+        {
+          key: 'currency',
+          required: false,
+          choices: currencies.allChoices(),
+          helpText: 'Specify the currency to watch new withdrawals.'
+        },
+        {
+          key: 'state',
+          required: false,
+          helpText: 'Specify the state of the withdrawal to watch.',
+          choices: withdrawalStateChoices
+        },
       ]
     }
   },
@@ -95,8 +111,17 @@ module.exports = {
     },
     operation: {
       inputFields: [
-        { key: 'currency', required: false, choices: currencies.allChoices() },
-        { key: 'state', required: false },
+        {
+          key: 'currency',
+          required: false,
+          choices: currencies.allChoices(),
+          helpText: 'Specify the currency to watch new withdrawals.'
+        },
+        {
+          key: 'state',
+          required: false,
+          choices: withdrawalStateChoices
+        },
       ],
       perform: performSearch
     },
@@ -114,12 +139,21 @@ module.exports = {
           required: true,
           choices: currencies.choicesForWithdrawal(),
           altersDynamicFields: true,
+          helpText: 'Specify the currency to create the withdrawals.'
         },
-        { key: 'amount', required: true, type: 'number' },
-        { key: 'address', required: true },
+        {
+          key: 'amount',
+          required: true,
+          helpText: 'Specify the amount to execute the withdrawal.',
+          type: 'number'
+        },
         function (z, bundle) {
           if(currencies.isCrypto(bundle.inputData.currency)) {
-            return [{ key: 'address', required: true }];
+            return [{
+              key: 'address',
+              required: true,
+              helpText: 'The wallet address to send the coins to.'
+            }];
           }
 
           return [];

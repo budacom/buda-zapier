@@ -45,9 +45,23 @@ module.exports = {
     },
     operation: {
       inputFields: [
-        { key: 'market', required: true, choices: markets.choicesForOrders() },
-        { key: 'type', required: true, choices: { 'Bid': 'Buy', 'Ask': 'Sell' } },
-        { key: 'amount', required: true },
+        {
+          key: 'market',
+          required: true,
+          choices: markets.choicesForOrders(),
+          helpText: 'Specify the market where to create the order.'
+        },
+        {
+          key: 'type',
+          required: true,
+          choices: { 'Bid': 'Buy', 'Ask': 'Sell' },
+          helpText: 'Specify the type of order.'
+        },
+        {
+          key: 'amount',
+          required: true,
+          helpText: 'Specify the amount to create the order.',
+        },
       ],
       perform: performCreate,
     },
