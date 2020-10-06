@@ -32,7 +32,6 @@ module.exports = {
       description: 'Triggers when a new trade is detected.',
     },
     operation: {
-      perform: searchLastTrade,
       inputFields: [
         {
           key: 'market',
@@ -40,6 +39,7 @@ module.exports = {
           choices: markets.allChoices(),
           helpText: 'Specify the market where to watch for trades.' },
       ],
+      perform: searchLastTrade,
     },
   },
 
