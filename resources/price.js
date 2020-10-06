@@ -13,7 +13,7 @@ const searchLastTrade = async (z, bundle) => {
       {
         id: lastTrade[4],
         price: lastTrade[2],
-        timestamp: parseInt(lastTrade[0]),
+        timestamp: new Date(parseInt(lastTrade[0])),
         trigger: lastTrade[3],
       }
     ];
