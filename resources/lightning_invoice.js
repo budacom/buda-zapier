@@ -63,6 +63,6 @@ module.exports = {
   sample: sample,
 
   outputFields: [
-    { key: 'encoded_payment_request', label: 'encoded_payment_request'},
+    { key: 'encoded_payment_request', label: 'encoded_payment_request' },
   ]
 };

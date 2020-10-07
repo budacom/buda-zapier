@@ -32,9 +32,9 @@ describe('Order', () => {
           order: {
             id: 'foo',
             state: 'traded',
-            traded_amount: [0.1, 'BTC'],
-            total_exchanged: [1000000.0, 'CLP'],
-            paid_fee: [0.00001, 'BTC']
+            traded_amount: ['0.1', 'BTC'],
+            total_exchanged: ['1000000.0', 'CLP'],
+            paid_fee: ['0.00001', 'BTC']
           }
         });
 
@@ -46,9 +46,9 @@ describe('Order', () => {
       expect(response).toEqual({
         id: 'foo',
         state: 'traded',
-        tradedAmount: 0.1,
-        totalExchanged: 1000000.0,
-        fee: 0.00001
+        tradedAmount: '0.1',
+        totalExchanged: '1000000.0',
+        fee: '0.00001'
       });
     });
 

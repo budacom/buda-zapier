@@ -60,6 +60,7 @@ module.exports = {
         {
           key: 'amount',
           required: true,
+          type: 'number',
           helpText: 'Specify the amount to create the order.',
         },
       ],
