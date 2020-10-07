@@ -15,6 +15,7 @@ const searchLastTrade = async (z, bundle) => {
         price: lastTrade[2],
         timestamp: new Date(parseInt(lastTrade[0])),
         trigger: lastTrade[3],
+        market: bundle.inputData.market,
       }
     ];
   } else {
@@ -50,5 +51,6 @@ module.exports = {
     { key: 'price', label: 'Price' },
     { key: 'timestamp', label: 'Time' },
     { key: 'trigger', label: 'Triggering Order' },
+    { key: 'market', label: 'Market' },
   ]
 };
