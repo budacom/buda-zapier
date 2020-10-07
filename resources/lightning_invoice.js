@@ -39,7 +39,7 @@ module.exports = {
       inputFields: [
         {
           key: 'amount_satoshis',
-          helpText: 'Speficy the amount of satoshis used to create the invoice.',
+          helpText: 'Specify the amount of satoshis used to create the invoice.',
           type: 'integer',
           required: true
         },

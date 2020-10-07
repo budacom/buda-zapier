@@ -72,8 +72,18 @@ module.exports = {
     // Define any input app's auth requires here. The user will be prompted to enter
     // this info when they connect their account.
     fields: [
-      { key: 'apiKey', label: 'API Key', required: true },
-      { key: 'apiSecret', label: 'API Key Secret', required: true }
+      {
+        key: 'apiKey',
+        label: 'API Key',
+        required: true,
+        helpText: 'You need to create an api key and secret in the [settings page](https://www.buda.com/manejar_api_keys).',
+      },
+      {
+        key: 'apiSecret',
+        label: 'API Key Secret',
+        required: true,
+        helpText: 'In this [support page](https://soporte.buda.com/es/articles/2805986-que-es-una-api-y-api-key) you can find more information. ',
+      }
     ],
 
     // The test method allows Zapier to verify that the credentials a user provides
