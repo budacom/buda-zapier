@@ -26,7 +26,13 @@ describe('Price', () => {
       );
 
       expect(response).toEqual(
-        [{ id: 432493, price: "10000000.0", timestamp: new Date(1601567885325), trigger: "buy" }]
+        [{
+          id: 432493,
+          price: "10000000.0",
+          timestamp: new Date(1601567885325),
+          trigger: "buy",
+          market: 'btc-clp',
+        }]
       );
     });
   });
